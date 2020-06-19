@@ -6,10 +6,11 @@ def get_article(x):
   id = int(x)
   write_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(id))
   with open(dir + '\\%d'%id, 'r', encoding="utf-8") as article_file:
-    title = article_file.readline()[:-1]
+    title = article_file.readline()
     article = ''
-    if title[0] == '《' and title[-1] == '》':
-      article = article_file.readline()[:-1]
+    if title[0] == '《' and title[-2] == '》':
+      article = article_file.readline()
+      title = title[:-1]
     else:
       article = title
       title = x
